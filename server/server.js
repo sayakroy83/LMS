@@ -12,7 +12,7 @@ app.use(cors());
 
 //Routes
 app.get('/', (req, res)=> {
-    res.send("Working!")
+    res.send("API Working!")
 })
 app.post('/clerk', express.json(), clerkWebhooks)
 
