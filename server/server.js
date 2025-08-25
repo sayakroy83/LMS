@@ -6,7 +6,7 @@ import connectDB from './configs/mongodb.js';
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 //connecting db
 await connectDB();
