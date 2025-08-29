@@ -73,7 +73,7 @@ export const educatorDashboardData = async(req, res)=> {
             }
         )
 
-        const totalEarnings = purchases.reduce((sum, Purchase)=> sum + purchases.amount, 0)
+        const totalEarnings = purchases.reduce((sum, purchase)=> sum + purchase.amount, 0)
 
         //collect student ids with their course titles
         const enrolledStudentsData = [];
