@@ -94,7 +94,7 @@ export const updateUserCourseProgress = async(req, res)=> {
 
         if(progressData){
             if(progressData.lectureCompleted.includes(lectureId)){
-                res.json({success: true, message: 'Lecture already completed'})
+                return res.json({success: true, message: 'Lecture already completed'})
             }
 
             progressData.lectureCompleted.push(lectureId)
@@ -139,7 +139,7 @@ export const addUserRating = async(req, res)=> {
     try {
         const course = await Course.findById(courseId)
         if(!course){
-            res.json({success: false, message: 'Course not found'})
+            return res.json({success: false, message: 'Course not found'})
         }
 
         const user = await User.findById(userId)
@@ -156,9 +156,9 @@ export const addUserRating = async(req, res)=> {
         }
         await course.save()
 
-        res.json({success: true, message: 'Rating added'})
+        return res.json({success: true, message: 'Rating added'})
 
     } catch (error) {
-        res.json({success: false, message: error.message})   
+        return res.json({success: false, message: error.message})   
     }
 }
