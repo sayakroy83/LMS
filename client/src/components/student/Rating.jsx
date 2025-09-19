@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-const Rating = ({intitialRating, onRate}) => {
+const Rating = ({initialRating, onRate}) => {
 
-  const [rating, setRating] = useState(intitialRating || 0)
+  const [rating, setRating] = useState(initialRating || 0)
 
   const handleRating = (value)=> {
     setRating(value);
@@ -10,10 +10,10 @@ const Rating = ({intitialRating, onRate}) => {
   }
 
   useEffect(()=> {
-    if(intitialRating){
-      setRating(intitialRating)
+    if(initialRating){
+      setRating(initialRating)
     }
-  }, [intitialRating])
+  }, [initialRating])
   return (
     <div>
         {Array.from({length: 5}, (_, index)=>{
