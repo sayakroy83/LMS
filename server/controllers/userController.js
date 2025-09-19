@@ -132,7 +132,7 @@ export const addUserRating = async(req, res)=> {
     const userId = req.auth.userId
     const {courseId, rating} = req.body
 
-    if(!courseId || !userId || !rating < 1 || rating > 5){
+    if(!courseId || !userId || !rating || rating < 1 || rating > 5){
         return res.json({success: false, message: 'Invalid details'})
     }
 
@@ -147,7 +147,7 @@ export const addUserRating = async(req, res)=> {
             return res.json({success: false, message: 'you have not purchase this course'})
         }
 
-        const existingRatingIndex = course.courseRatings.find(r => r.userId === userId)
+        const existingRatingIndex = course.courseRatings.findIndex(r => r.userId === userId)
 
         if(existingRatingIndex > -1){
             course.courseRatings[existingRatingIndex].rating = rating
