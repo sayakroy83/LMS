@@ -1,12 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import uniqid from 'uniqid'
 import Quill from 'quill'
 import { assets } from '../../assets/assets'
+import { toast } from 'react-toastify'
+import axios from 'axios'
+import { AppContext } from '../../context/AppContext'
 
 
 
 const AddCourse = () => {
 
+  const {backendUrl, getToken} = useContext(AppContext)
   const quillRef = useRef(null)
   const editorRef = useRef(null)
 
@@ -92,9 +96,59 @@ const AddCourse = () => {
     });
   }
 
-  const handleSubmit = async(e)=> {
-    e.preventDefault()
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!image) {
+        toast.error('Thumbnail not selected');
+        return;
+      }
+
+      // Ensure lectureDuration values are numeric
+      const sanitizedChapters = chapters.map((ch) => ({
+        ...ch,
+        chapterContent: ch.chapterContent.map((lec) => ({
+          ...lec,
+          lectureDuration: Number(lec.lectureDuration) || 0,
+        })),
+      }));
+
+      const description = quillRef.current?.root?.innerHTML || '';
+
+      const courseData = {
+        courseTitle,
+        courseDescription: description,
+        coursePrice: Number(coursePrice),
+        discount: Number(discount),
+        courseContent: sanitizedChapters,
+      };
+
+      const formData = new FormData();
+      formData.append('courseData', JSON.stringify(courseData));
+      formData.append('image', image);
+
+      const token = await getToken();
+      const { data } = await axios.post(
+        backendUrl + '/api/educator/add-course',
+        formData,
+        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } }
+      );
+
+      if (data.success) {
+        toast.success(data.message);
+        setCourseTitle('');
+        setCoursePrice(0);
+        setDiscount(0);
+        setImage(null);
+        setChapters([]);
+        if (quillRef.current?.root) quillRef.current.root.innerHTML = '';
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   useEffect(()=>{
     if(!quillRef.current && editorRef.current){
