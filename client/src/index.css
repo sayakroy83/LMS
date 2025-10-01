@@ -14,6 +14,42 @@
   display: none;
 }
 
+@theme {
+  --font-size-course-details-heading-small: 26px;
+  --line-height-course-details-heading-small: 36px;
+  --font-size-course-details-heading-large: 36px;
+  --line-height-course-details-heading-large: 44px;
+  --font-size-home-heading-small: 28px;
+  --line-height-home-heading-small: 34px;
+  --font-size-home-heading-large: 48px;
+  --line-height-home-heading-large: 56px;
+  --font-size-default: 15px;
+  --line-height-default: 21px;
+
+  --grid-template-columns-auto: repeat(auto-fit, minmax(200px, 1fr));
+
+  --spacing-section-height: 500px;
+
+  --max-width-course-card: 424px;
+
+  --box-shadow-custom-card: 0px 4px 15px 2px rgba(0, 0, 0, 0.1);
+
+}
+
+@layer components{
+  .course-title-heading {
+    font-size: 26px;
+    line-height: 36px;
+    font-weight: 600; 
+    color: #1f2937; 
+  
+    @media (min-width: 768px) {
+      font-size: 36px;
+      line-height: 44px;
+    }
+  }
+}
+
 .rich-text { font-size: 15px; color: #7A7B7D; }
 
 .rich-text p { margin-bottom: 16px; }
