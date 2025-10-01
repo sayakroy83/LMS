@@ -27,12 +27,10 @@
 ## ⚙️ Setup
 
 ### Clone the repo
-```bash
 git clone [#####################################]
 cd LMS
 
 Backend
-bash
 Copy code
 cd server
 npm install
@@ -40,7 +38,6 @@ npm install
 npm run dev
 
 Frontend
-bash
 Copy code
 cd ../client
 npm install
@@ -48,7 +45,6 @@ npm start
 ```
 
 📂 Project Structure
-```bash
 LMS/
 ├── client/           # React frontend
 ├── server/           # Express backend
