@@ -10,7 +10,6 @@
 - **Frontend:** React, CSS
 - **Backend:** Node.js, Express
 - **Database:** MongoDB
-- **Authentication:** JWT
 - **Deployment:** Vercel
 
 ---
@@ -20,7 +19,6 @@
 - Course creation, enrollment, and management
 - CRUD operations for courses and content
 - Responsive UI
-- JWT-based authentication and authorization
 
 ---
 
