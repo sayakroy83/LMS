@@ -24,8 +24,9 @@
 
 ---
 
+## 📂 Project Structure
 
-📂 Project Structure
+```
 LMS/
 ├── client/           # React frontend
 ├── server/           # Express backend
