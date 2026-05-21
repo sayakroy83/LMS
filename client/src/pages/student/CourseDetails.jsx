@@ -92,17 +92,17 @@ const CourseDetails = () => {
                     {[...Array(5)].map((_, i)=>(<img key={i} src={i < Math.floor(calculateRating(courseData)) ? assets.star : assets.star_blank} alt='' className='w-3.5 h-3.5'/>)
                   )}
                 </div>
-                <p className='text-blue-600'>({courseData.courseRatings.length} {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'})</p>
-                <p>{courseData.enrolledStudents.length} {courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
+                <p className='text-blue-600'>({courseData.courseRatings?.length || 0} {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'})</p>
+                <p>{courseData.enrolledStudents?.length || 0} {courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
         </div>
 
-        <p className='text-sm'>Course by <span className='text-blue-600 underline'>{courseData.educator.name}</span></p>
+        <p className='text-sm'>Course by <span className='text-blue-600 underline'>{courseData.educator?.name || "Unknown"}</span></p>
 
         <div className='pt-8 text-gray-800'>
           <h2 className='text-xl font-semibold'>Course Structure</h2>
 
           <div className='pt-5'>
-            {courseData.courseContent.map((chapter, index)=> (
+            {courseData.courseContent?.map((chapter, index)=> (
               <div key={index} className='border border-gray-300 bg-white mb-2 rounded'>
                 <div className='flex items-center justify-between px-4 py-3 cursor-pointer select-none' onClick={()=> toggleSection(index)}>
                   <div className='flex items-center gap-2'>
